@@ -59,7 +59,7 @@ leadForm.addEventListener('submit', async (event) => {
     leadForm.reset();
     setTimeout(closeModal, 2600);
   } catch (error) {
-    status.className = 'form-status success'; status.textContent = '✓ Демо-заявка принята. В проекте для клиента здесь подключается CRM.'; localStorage.setItem('aurelia-demo-lead', JSON.stringify({name:data.get('name'), phone:data.get('phone'), service:data.get('service')})); leadForm.reset();
+    status.className = 'form-status success'; status.textContent = '✓ Демо-заявка принята. В проекте для клиента здесь подключается CRM.'; localStorage.setItem('aurelia-demo-lead', JSON.stringify({ name: data.get('name'), phone: data.get('phone'), service: data.get('service'), createdAt: new Date().toISOString() })); leadForm.reset(); setTimeout(closeModal, 2600);
   } finally {
     submit.disabled = false; submit.firstChild.textContent = 'Записаться ';
   }
@@ -118,8 +118,35 @@ quickReplies.addEventListener('click', (event) => { if (event.target.textContent
 document.addEventListener('keydown', (event) => { if (event.key === 'Escape') { closeModal(); chat.classList.remove('open'); } });
 
 if (!reducedMotion) {
+  const finePointer = matchMedia('(pointer: fine)').matches;
+  let frame = 0;
   document.addEventListener('pointermove', (event) => {
-    document.documentElement.style.setProperty('--mx', `${event.clientX}px`);
-    document.documentElement.style.setProperty('--my', `${event.clientY}px`);
+    if (!finePointer) return;
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(() => {
+      document.body.classList.add('pointer-active');
+      document.documentElement.style.setProperty('--mx', `${event.clientX}px`);
+      document.documentElement.style.setProperty('--my', `${event.clientY}px`);
+      const x = event.clientX / innerWidth - .5;
+      const y = event.clientY / innerHeight - .5;
+      $$('[data-parallax]').forEach((element) => {
+        const power = Number(element.dataset.parallax || .025);
+        element.style.transform = `translate3d(${x * innerWidth * power}px, ${y * innerHeight * power}px, 0) rotateX(${-y * 2.4}deg) rotateY(${x * 2.4}deg)`;
+      });
+    });
   }, { passive: true });
+
+  document.addEventListener('mouseleave', () => document.body.classList.remove('pointer-active'));
+
+  if (finePointer) {
+    $$('[data-tilt]').forEach((card) => {
+      card.addEventListener('pointermove', (event) => {
+        const rect = card.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width - .5;
+        const y = (event.clientY - rect.top) / rect.height - .5;
+        card.style.transform = `translateY(-8px) rotateX(${-y * 5}deg) rotateY(${x * 6}deg)`;
+      }, { passive: true });
+      card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+    });
+  }
 }

@@ -1,0 +1,358 @@
+:root {
+  --cursor-x: 50vw;
+  --cursor-y: 50vh;
+  --accent-lime: #d9f06b;
+  --accent-coral: #f3aa84;
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(680px circle at var(--mx, 76vw) var(--my, 18vh), rgba(162, 203, 181, .16), transparent 55%),
+    linear-gradient(120deg, rgba(255, 248, 232, .7), transparent 42%);
+}
+
+.cursor-aura,
+.cursor-dot {
+  position: fixed;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0;
+  transform: translate3d(var(--mx, -100px), var(--my, -100px), 0) translate(-50%, -50%);
+  transition: opacity .25s ease;
+}
+
+.cursor-aura {
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(24, 78, 70, .34);
+  border-radius: 50%;
+  backdrop-filter: invert(.03);
+}
+
+.cursor-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #d9f06b;
+  box-shadow: 0 0 18px rgba(217, 240, 107, .8);
+}
+
+body.pointer-active .cursor-aura,
+body.pointer-active .cursor-dot { opacity: 1; }
+
+.hero {
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(240, 178, 138, .18), transparent 24%),
+    radial-gradient(circle at 85% 18%, rgba(168, 215, 190, .26), transparent 29%);
+}
+
+.hero::before,
+.services::before,
+.doctors::before {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(1px);
+  border: 1px solid rgba(32, 91, 80, .1);
+  animation: float-orb 12s ease-in-out infinite;
+}
+
+.hero::before { left: -240px; top: 160px; }
+.services,
+.doctors { position: relative; overflow: hidden; }
+.services::before { right: -310px; top: 8%; background: rgba(217, 240, 107, .08); }
+.doctors::before { left: -280px; bottom: 8%; background: rgba(243, 170, 132, .08); animation-delay: -5s; }
+
+.hero-copy { position: relative; z-index: 2; }
+.hero-copy h1 em {
+  display: inline-block;
+  background: linear-gradient(105deg, #13463f 20%, #4a8f79 52%, #13463f 78%);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: headline-shimmer 7s linear infinite;
+}
+
+.hero-visual {
+  perspective: 1100px;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.visual-card {
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.48);
+  box-shadow: 0 32px 90px rgba(13, 52, 48, .24);
+  background: #143e38;
+}
+
+.visual-card::after {
+  content: "";
+  position: absolute;
+  inset: -70% -45%;
+  pointer-events: none;
+  background: linear-gradient(110deg, transparent 42%, rgba(255,255,255,.2) 49%, transparent 56%);
+  transform: translateX(-45%);
+  animation: photo-sheen 7s ease-in-out infinite;
+}
+
+.smile-art {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.smile-art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, transparent 48%, rgba(8, 34, 31, .7) 100%);
+  pointer-events: none;
+}
+
+.hero-photo {
+  width: 100%;
+  height: 100%;
+  min-height: 390px;
+  object-fit: cover;
+  object-position: 62% center;
+  display: block;
+  transform: scale(1.04);
+  animation: hero-breathe 12s ease-in-out infinite alternate;
+}
+
+.visual-top,
+.visual-bottom { position: relative; z-index: 3; }
+.floating-badge { backdrop-filter: blur(15px); box-shadow: 0 18px 50px rgba(13, 52, 48, .16); }
+.badge-one { animation: badge-float 5s ease-in-out infinite; }
+.badge-two { animation: badge-float 6s ease-in-out -2s infinite; }
+
+.hero-strip {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 18px 55px rgba(14, 52, 48, .1);
+}
+.hero-strip::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(217,240,107,.18), transparent);
+  transform: translateX(-100%);
+  animation: strip-glow 8s ease-in-out infinite;
+}
+
+.service-grid { align-items: stretch; perspective: 1400px; }
+.service-card {
+  position: relative;
+  isolation: isolate;
+  padding-top: 214px;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform .18s ease-out, box-shadow .45s ease, border-color .45s ease;
+  box-shadow: 0 18px 50px rgba(20, 62, 56, .07);
+}
+
+.service-card::after {
+  content: "";
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  right: -70px;
+  bottom: -70px;
+  border-radius: 50%;
+  background: var(--accent-lime);
+  opacity: .12;
+  transform: scale(.8);
+  transition: transform .5s ease, opacity .5s ease;
+  z-index: -1;
+}
+
+.service-card:hover {
+  box-shadow: 0 30px 75px rgba(20, 62, 56, .17);
+  border-color: rgba(52, 116, 96, .28);
+}
+.service-card:hover::after { transform: scale(2.5); opacity: .09; }
+
+.service-media {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  top: 12px;
+  height: 180px;
+  overflow: hidden;
+  border-radius: 21px;
+  background-image: url("services-grid.jpg");
+  background-repeat: no-repeat;
+  background-size: 200% 200%;
+  transform: translateZ(18px);
+}
+
+.service-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(8, 34, 31, .62));
+}
+.service-media-one { background-position: 0 0; }
+.service-media-two { background-position: 100% 0; }
+.service-media-three { background-position: 0 100%; }
+.service-media-four { background-position: 100% 100%; }
+.service-media span {
+  position: absolute;
+  z-index: 2;
+  left: 15px;
+  bottom: 13px;
+  padding: 7px 10px;
+  border: 1px solid rgba(255,255,255,.38);
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(9, 42, 37, .28);
+  backdrop-filter: blur(10px);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.service-card .card-num { top: 215px; }
+.service-card .service-icon { margin-top: 0; }
+.service-card > :not(.service-media) { position: relative; z-index: 2; }
+.service-card h3 { transition: color .35s ease; }
+.service-card:hover h3 { color: #397c68; }
+.service-card:hover .service-media { background-size: 214% 214%; transition: background-size .8s ease; }
+
+.doctor-grid { perspective: 1400px; }
+.doctor-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  overflow: hidden;
+  box-shadow: 0 22px 60px rgba(17, 56, 50, .1);
+  transition: transform .18s ease-out, box-shadow .45s ease;
+}
+.doctor-card:hover { box-shadow: 0 38px 85px rgba(17, 56, 50, .2); }
+
+.doctor-photo {
+  min-height: 430px;
+  background-image: url("doctors-team.jpg") !important;
+  background-size: 300% 100% !important;
+  background-repeat: no-repeat !important;
+  filter: saturate(.9);
+  transition: background-size .8s cubic-bezier(.2,.8,.2,1), filter .5s ease;
+}
+.photo-one { background-position: 0 center !important; }
+.photo-two { background-position: 50% center !important; }
+.photo-three { background-position: 100% center !important; }
+.doctor-card:hover .doctor-photo { background-size: 315% 105% !important; filter: saturate(1.05); }
+.doctor-photo::after {
+  content: "";
+  position: absolute;
+  inset: 45% 0 0;
+  background: linear-gradient(transparent, rgba(9, 41, 36, .32));
+  pointer-events: none;
+}
+.experience { z-index: 2; backdrop-filter: blur(12px); background: rgba(255,255,255,.82); }
+.doctor-info { position: relative; z-index: 2; background: rgba(255,255,255,.94); }
+
+.primary-btn,
+.cream-btn,
+.outline-btn,
+.card-link {
+  position: relative;
+  overflow: hidden;
+}
+.primary-btn::before,
+.cream-btn::before,
+.outline-btn::before {
+  content: "";
+  position: absolute;
+  top: -60%;
+  left: -35%;
+  width: 28%;
+  height: 220%;
+  background: rgba(255,255,255,.34);
+  transform: rotate(18deg) translateX(-180%);
+  transition: transform .7s ease;
+}
+.primary-btn:hover::before,
+.cream-btn:hover::before,
+.outline-btn:hover::before { transform: rotate(18deg) translateX(650%); }
+
+.approach { position: relative; overflow: hidden; }
+.approach::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(520px circle at var(--mx, 72%) var(--my, 50%), rgba(217, 240, 107, .1), transparent 64%);
+}
+.steps, .approach-copy { position: relative; z-index: 1; }
+.step { transition: transform .35s ease, background .35s ease; }
+.step:hover { transform: translateX(10px); background: rgba(255,255,255,.055); }
+
+@keyframes hero-breathe { to { transform: scale(1.1) translateX(-1.5%); } }
+@keyframes photo-sheen { 0%, 65% { transform: translateX(-55%); } 85%, 100% { transform: translateX(55%); } }
+@keyframes badge-float { 0%,100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-12px) rotate(1deg); } }
+@keyframes headline-shimmer { to { background-position: 220% center; } }
+@keyframes strip-glow { 0%, 20% { transform: translateX(-100%); } 55%, 100% { transform: translateX(100%); } }
+@keyframes float-orb { 0%,100% { transform: translate(0,0) rotate(0); } 50% { transform: translate(28px,-34px) rotate(18deg); } }
+
+@media (pointer: fine) {
+  body { cursor: none; }
+  a, button, input, select, label { cursor: none; }
+}
+
+@media (max-width: 900px) {
+  .cursor-aura, .cursor-dot { display: none; }
+  .hero-visual { transform: none !important; }
+  .hero-photo { min-height: 330px; object-position: 64% center; }
+  .service-card { padding-top: 204px; }
+  .service-media { height: 170px; }
+  .doctor-photo { min-height: 480px; }
+}
+
+@media (max-width: 560px) {
+  .hero-photo { min-height: 280px; }
+  .visual-card { border-radius: 24px; }
+  .floating-badge { transform: scale(.88); }
+  .doctor-photo { min-height: 410px; }
+  .service-card, .doctor-card { transform: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-photo,
+  .visual-card::after,
+  .hero-strip::after,
+  .badge-one,
+  .badge-two,
+  .hero::before,
+  .services::before,
+  .doctors::before,
+  .hero-copy h1 em { animation: none !important; }
+  [data-tilt], [data-parallax] { transform: none !important; }
+}

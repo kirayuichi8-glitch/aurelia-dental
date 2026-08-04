@@ -12,10 +12,13 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="og.png">
   <title>Aurelia — стоматология, в которую возвращаются</title>
-  <link rel="stylesheet" href="styles.css?v=1.0.1">
+  <link rel="stylesheet" href="styles.css?v=2.0.0">
+  <link rel="stylesheet" href="enhancements.css?v=2.0.0">
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
+  <div class="cursor-aura" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
   <header class="site-header" id="top">
     <a class="brand" href="#top" aria-label="Aurelia, на главную">
       <span class="brand-mark">A</span><span><b>AURELIA</b><small>бережная стоматология</small></span>
@@ -50,11 +53,11 @@
           <div><strong>4,9 <span>★★★★★</span></strong><small>по отзывам 1 280 пациентов</small></div>
         </div>
       </div>
-      <div class="hero-visual reveal delay-1" aria-label="Современная клиника Aurelia">
+      <div class="hero-visual reveal delay-1" aria-label="Современная клиника Aurelia" data-parallax="0.035">
         <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
         <div class="visual-card">
           <div class="visual-top"><span>01</span><span>Диагностика</span></div>
-          <div class="smile-art"><div class="tooth">A</div></div>
+          <div class="smile-art"><img class="hero-photo" src="hero-clinic.jpg" alt="Врач клиники Aurelia обсуждает с пациентом план лечения"></div>
           <div class="visual-bottom"><b>Видим больше.<br>Лечим точнее.</b><span>3D-снимок<br>за 30 секунд</span></div>
         </div>
         <div class="floating-badge badge-one"><span>✓</span> Гарантия<br><b>до 5 лет</b></div>
@@ -68,10 +71,10 @@
     <section class="section services" id="services">
       <div class="section-head reveal"><div><span class="section-index">01 / УСЛУГИ</span><h2>Всё для здоровой<br><em>и красивой улыбки</em></h2></div><p>От первого осмотра до полного восстановления — в одной клинике и по понятному плану.</p></div>
       <div class="service-grid">
-        <article class="service-card featured reveal"><span class="card-num">01</span><div class="service-icon">✦</div><h3>Диагностика</h3><p>Осмотр, 3D-снимок и цифровой план лечения за один визит.</p><div class="price">от 1 900 ₽</div><button class="card-link js-open-form" data-service="Диагностика">Подробнее <span>→</span></button></article>
-        <article class="service-card reveal delay-1"><span class="card-num">02</span><div class="service-icon">◌</div><h3>Лечение зубов</h3><p>Под микроскопом, с анестезией нового поколения и фотопротоколом.</p><div class="price">от 6 500 ₽</div><button class="card-link js-open-form" data-service="Лечение зубов">Подробнее <span>→</span></button></article>
-        <article class="service-card reveal delay-2"><span class="card-num">03</span><div class="service-icon">◇</div><h3>Имплантация</h3><p>Надёжное восстановление зубов с пожизненной гарантией на имплант.</p><div class="price">от 39 000 ₽</div><button class="card-link js-open-form" data-service="Имплантация">Подробнее <span>→</span></button></article>
-        <article class="service-card reveal"><span class="card-num">04</span><div class="service-icon">☼</div><h3>Эстетика</h3><p>Виниры, отбеливание и реставрации с естественным результатом.</p><div class="price">от 18 000 ₽</div><button class="card-link js-open-form" data-service="Эстетическая стоматология">Подробнее <span>→</span></button></article>
+        <article class="service-card featured reveal" data-tilt><div class="service-media service-media-one"><span>3D · точность</span></div><span class="card-num">01</span><div class="service-icon">✦</div><h3>Диагностика</h3><p>Осмотр, 3D-снимок и цифровой план лечения за один визит.</p><div class="price">от 1 900 ₽</div><button class="card-link js-open-form" data-service="Диагностика">Подробнее <span>→</span></button></article>
+        <article class="service-card reveal delay-1" data-tilt><div class="service-media service-media-two"><span>Под микроскопом</span></div><span class="card-num">02</span><div class="service-icon">◌</div><h3>Лечение зубов</h3><p>Под микроскопом, с анестезией нового поколения и фотопротоколом.</p><div class="price">от 6 500 ₽</div><button class="card-link js-open-form" data-service="Лечение зубов">Подробнее <span>→</span></button></article>
+        <article class="service-card reveal delay-2" data-tilt><div class="service-media service-media-three"><span>Цифровой протокол</span></div><span class="card-num">03</span><div class="service-icon">◇</div><h3>Имплантация</h3><p>Надёжное восстановление зубов с пожизненной гарантией на имплант.</p><div class="price">от 39 000 ₽</div><button class="card-link js-open-form" data-service="Имплантация">Подробнее <span>→</span></button></article>
+        <article class="service-card reveal" data-tilt><div class="service-media service-media-four"><span>Естественный результат</span></div><span class="card-num">04</span><div class="service-icon">☼</div><h3>Эстетика</h3><p>Виниры, отбеливание и реставрации с естественным результатом.</p><div class="price">от 18 000 ₽</div><button class="card-link js-open-form" data-service="Эстетическая стоматология">Подробнее <span>→</span></button></article>
       </div>
     </section>
 
@@ -87,9 +90,9 @@
     <section class="section doctors" id="doctors">
       <div class="section-head reveal"><div><span class="section-index">03 / КОМАНДА</span><h2>Врачи, которым<br><em>доверяют улыбку</em></h2></div><p>Каждый врач работает в своей специализации и регулярно подтверждает квалификацию.</p></div>
       <div class="doctor-grid">
-        <article class="doctor-card reveal"><div class="doctor-photo photo-one"><span>ЕА</span><div class="experience">12 лет<br><small>опыта</small></div></div><div class="doctor-info"><h3>Елена Андреева</h3><p>Главный врач · стоматолог-терапевт</p><div><button class="card-link js-open-form" data-service="Консультация Елены Андреевой">Записаться <span>→</span></button><span class="rating">★ 5.0</span></div></div></article>
-        <article class="doctor-card reveal delay-1"><div class="doctor-photo photo-two"><span>МС</span><div class="experience">9 лет<br><small>опыта</small></div></div><div class="doctor-info"><h3>Михаил Соколов</h3><p>Стоматолог-хирург · имплантолог</p><div><button class="card-link js-open-form" data-service="Консультация Михаила Соколова">Записаться <span>→</span></button><span class="rating">★ 4.9</span></div></div></article>
-        <article class="doctor-card reveal delay-2"><div class="doctor-photo photo-three"><span>АК</span><div class="experience">8 лет<br><small>опыта</small></div></div><div class="doctor-info"><h3>Анна Ким</h3><p>Стоматолог-ортопед · эстетист</p><div><button class="card-link js-open-form" data-service="Консультация Анны Ким">Записаться <span>→</span></button><span class="rating">★ 5.0</span></div></div></article>
+        <article class="doctor-card reveal" data-tilt><div class="doctor-photo photo-one"><span class="sr-only">ЕА</span><div class="experience">12 лет<br><small>опыта</small></div></div><div class="doctor-info"><h3>Елена Андреева</h3><p>Главный врач · стоматолог-терапевт</p><div><button class="card-link js-open-form" data-service="Консультация Елены Андреевой">Записаться <span>→</span></button><span class="rating">★ 5.0</span></div></div></article>
+        <article class="doctor-card reveal delay-1" data-tilt><div class="doctor-photo photo-two"><span class="sr-only">МС</span><div class="experience">9 лет<br><small>опыта</small></div></div><div class="doctor-info"><h3>Михаил Соколов</h3><p>Стоматолог-хирург · имплантолог</p><div><button class="card-link js-open-form" data-service="Консультация Михаила Соколова">Записаться <span>→</span></button><span class="rating">★ 4.9</span></div></div></article>
+        <article class="doctor-card reveal delay-2" data-tilt><div class="doctor-photo photo-three"><span class="sr-only">АК</span><div class="experience">8 лет<br><small>опыта</small></div></div><div class="doctor-info"><h3>Анна Ким</h3><p>Стоматолог-ортопед · эстетист</p><div><button class="card-link js-open-form" data-service="Консультация Анны Ким">Записаться <span>→</span></button><span class="rating">★ 5.0</span></div></div></article>
       </div>
     </section>
 
@@ -129,6 +132,6 @@
       </form>
     </div>
   </div>
-  <script src="app.js?v=1.0.1" defer></script>
+  <script src="app.js?v=2.0.0" defer></script>
 </body>
 </html>
