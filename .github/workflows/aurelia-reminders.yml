@@ -4,6 +4,15 @@ on:
   schedule:
     - cron: "*/10 * * * *"
   workflow_dispatch:
+    inputs:
+      action:
+        description: "check, confirm or reschedule"
+        required: false
+        default: "check"
+      appointment_id:
+        description: "Appointment ID for confirm/reschedule"
+        required: false
+        default: ""
 
 permissions:
   contents: read
@@ -16,9 +25,21 @@ jobs:
       - name: Check due appointments
         env:
           REMINDER_SECRET: ${{ secrets.REMINDER_SECRET }}
+          ACTION: ${{ github.event.inputs.action || 'check' }}
+          APPOINTMENT_ID: ${{ github.event.inputs.appointment_id }}
         run: |
           test -n "$REMINDER_SECRET"
-          curl --fail-with-body --retry 2 --max-time 30 \
-            -X POST \
-            -H "Authorization: Bearer $REMINDER_SECRET" \
-            "https://aurelia-dental-portfolio.kira-yuichi8.chatgpt.site/api/reminders/run"
+          if [ "$ACTION" = "confirm" ] || [ "$ACTION" = "reschedule" ]; then
+            test -n "$APPOINTMENT_ID"
+            curl --fail-with-body --retry 2 --max-time 30 \
+              -X POST \
+              -H "Authorization: Bearer $REMINDER_SECRET" \
+              -H "Content-Type: application/json" \
+              --data "{\"action\":\"$ACTION\",\"appointment_id\":\"$APPOINTMENT_ID\"}" \
+              "https://aurelia-dental-portfolio.kira-yuichi8.chatgpt.site/api/admin/appointments/action"
+          else
+            curl --fail-with-body --retry 2 --max-time 30 \
+              -X POST \
+              -H "Authorization: Bearer $REMINDER_SECRET" \
+              "https://aurelia-dental-portfolio.kira-yuichi8.chatgpt.site/api/reminders/run"
+          fi
