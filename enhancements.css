@@ -87,6 +87,14 @@ body.pointer-active .cursor-dot { opacity: 1; }
 .doctors::before { left: -280px; bottom: 8%; background: rgba(243, 170, 132, .08); animation-delay: -5s; }
 
 .hero-copy { position: relative; z-index: 2; }
+.hero-copy h1 { color: #143f39; text-shadow: 0 1px 0 rgba(255,255,255,.34); }
+.hero-lead { color: rgba(20, 63, 57, .72); }
+.site-header {
+  color: #143f39;
+  background: linear-gradient(180deg, rgba(255, 250, 240, .82), rgba(255, 250, 240, .15));
+  backdrop-filter: blur(8px);
+}
+.site-header .outline-btn { border-color: rgba(20, 63, 57, .35); color: #143f39; }
 .hero-copy h1 em {
   display: inline-block;
   background: linear-gradient(105deg, #13463f 20%, #4a8f79 52%, #13463f 78%);
@@ -147,7 +155,8 @@ body.pointer-active .cursor-dot { opacity: 1; }
 }
 
 .visual-top,
-.visual-bottom { position: relative; z-index: 3; }
+.visual-bottom { position: relative; z-index: 3; color: #fff; }
+.visual-bottom span { color: rgba(255,255,255,.72); }
 .floating-badge { backdrop-filter: blur(15px); box-shadow: 0 18px 50px rgba(13, 52, 48, .16); }
 .badge-one { animation: badge-float 5s ease-in-out infinite; }
 .badge-two { animation: badge-float 6s ease-in-out -2s infinite; }
