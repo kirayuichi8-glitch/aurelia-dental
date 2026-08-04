@@ -26,15 +26,24 @@ test("assistant and durable lead endpoint are wired", async () => {
 });
 
 test("booking, Telegram opt-in and reminder storage are present", async () => {
-  const [html, migration] = await Promise.all([
+  const [html, migration, settingsMigration] = await Promise.all([
     read("index.html"),
     readFile(new URL("../drizzle/0001_appointments_and_reminders.sql", import.meta.url), "utf8"),
+    readFile(new URL("../drizzle/0002_bot_settings.sql", import.meta.url), "utf8"),
   ]);
   assert.match(html, /name="preferred_date"/);
   assert.match(html, /name="preferred_time"/);
   assert.match(migration, /CREATE TABLE IF NOT EXISTS appointments/);
   assert.match(migration, /CREATE TABLE IF NOT EXISTS conversation_events/);
   assert.match(migration, /idx_appointments_status_starts_at/);
+  assert.match(settingsMigration, /CREATE TABLE IF NOT EXISTS bot_settings/);
+});
+
+test("the first Telegram start safely claims the administrator chat", async () => {
+  const worker = await readFile(new URL("../server/worker-template.js", import.meta.url), "utf8");
+  assert.match(worker, /message\?\.text === "\/start"/);
+  assert.match(worker, /INSERT OR IGNORE INTO bot_settings/);
+  assert.match(worker, /getAdminChatId/);
 });
 
 test("visual assets preserve proportions and the native cursor stays available", async () => {

@@ -42,6 +42,21 @@ async function sendTelegram(env, chatId, text, replyMarkup) {
   }
 }
 
+async function getAdminChatId(env) {
+  if (env.TELEGRAM_ADMIN_CHAT_ID) return String(env.TELEGRAM_ADMIN_CHAT_ID);
+  if (!env.DB) return "";
+  const setting = await env.DB.prepare("SELECT value FROM bot_settings WHERE key = 'telegram_admin_chat_id'").first();
+  return String(setting?.value || "");
+}
+
+async function claimAdminChat(env, chatId) {
+  if (!env.DB || !chatId) return false;
+  const normalized = String(chatId);
+  await env.DB.prepare("INSERT OR IGNORE INTO bot_settings (key, value, updated_at) VALUES ('telegram_admin_chat_id', ?, CURRENT_TIMESTAMP)")
+    .bind(normalized).run();
+  return (await getAdminChatId(env)) === normalized;
+}
+
 async function answerCallback(env, callbackId, text) {
   if (!env.TELEGRAM_BOT_TOKEN || !callbackId) return;
   await fetch(telegramUrl(env, "answerCallbackQuery"), {
@@ -97,7 +112,7 @@ async function createLead(request, env) {
         { text: "Перенести", callback_data: `reschedule:${appointmentId}` },
       ]],
     } : undefined;
-    await sendTelegram(env, env.TELEGRAM_ADMIN_CHAT_ID, adminText, adminKeyboard);
+    await sendTelegram(env, await getAdminChatId(env), adminText, adminKeyboard);
 
     const reminderUrl = appointmentId && env.TELEGRAM_BOT_USERNAME
       ? `https://t.me/${String(env.TELEGRAM_BOT_USERNAME).replace(/^@/, "")}?start=a_${reminderToken}`
@@ -130,7 +145,7 @@ async function logAssistant(request, env) {
 }
 
 async function notifyAdmin(env, text) {
-  return sendTelegram(env, env.TELEGRAM_ADMIN_CHAT_ID, text);
+  return sendTelegram(env, await getAdminChatId(env), text);
 }
 
 async function handleTelegramWebhook(request, env) {
@@ -141,6 +156,18 @@ async function handleTelegramWebhook(request, env) {
   const update = await request.json();
   const message = update.message;
   const callback = update.callback_query;
+
+  if (message?.text === "/start") {
+    const isAdmin = await claimAdminChat(env, message.chat.id);
+    await sendTelegram(
+      env,
+      message.chat.id,
+      isAdmin
+        ? "Готово! Этот чат назначен администратором Aurelia Dental. Сюда будут приходить новые заявки и уведомления о записях."
+        : "Здравствуйте! Я помощник Aurelia Dental. Записаться и подключить напоминания можно на сайте клиники.",
+    );
+    return json({ ok: true });
+  }
 
   if (message?.text?.startsWith("/start a_")) {
     const match = message.text.match(/^\/start a_([0-9a-f]+)$/i);
@@ -168,7 +195,7 @@ async function handleTelegramWebhook(request, env) {
     }
 
     const fromChat = String(callback.message?.chat?.id || callback.from?.id || "");
-    const isAdmin = fromChat === String(env.TELEGRAM_ADMIN_CHAT_ID || "");
+    const isAdmin = fromChat === await getAdminChatId(env);
     if (action === "confirm" && isAdmin) {
       await env.DB.prepare("UPDATE appointments SET status = 'confirmed', updated_at = CURRENT_TIMESTAMP WHERE id = ?").bind(appointmentId).run();
       if (appointment.patient_chat_id) await sendTelegram(env, appointment.patient_chat_id, `Ваша запись подтверждена: ${appointment.starts_at.replace("T", " ").slice(0, 16)}. Напомним за два часа.`);
