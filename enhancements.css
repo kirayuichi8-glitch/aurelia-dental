@@ -89,6 +89,9 @@ body.pointer-active .cursor-dot { opacity: 1; }
 .hero-copy { position: relative; z-index: 2; }
 .hero-copy h1 { color: #143f39; text-shadow: 0 1px 0 rgba(255,255,255,.34); }
 .hero-lead { color: rgba(20, 63, 57, .72); }
+.text-btn { color: #285f55; }
+.hero-trust { color: #234b45; }
+.hero-trust small { color: rgba(35, 75, 69, .62); }
 .site-header {
   color: #143f39;
   background: linear-gradient(180deg, rgba(255, 250, 240, .82), rgba(255, 250, 240, .15));
