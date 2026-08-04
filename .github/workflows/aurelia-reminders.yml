@@ -1,0 +1,24 @@
+name: Aurelia appointment reminders
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  send-reminders:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Check due appointments
+        env:
+          REMINDER_SECRET: ${{ secrets.REMINDER_SECRET }}
+        run: |
+          test -n "$REMINDER_SECRET"
+          curl --fail-with-body --retry 2 --max-time 30 \
+            -X POST \
+            -H "Authorization: Bearer $REMINDER_SECRET" \
+            "https://aurelia-dental-portfolio.kira-yuichi8.chatgpt.site/api/reminders/run"
