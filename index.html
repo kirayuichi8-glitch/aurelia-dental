@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Aurelia — бережная стоматология в Екатеринбурге. Диагностика, лечение и эстетика с понятным планом и гарантией.">
+  <meta name="theme-color" content="#0d3430">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Aurelia — стоматология, в которую возвращаются">
+  <meta property="og:description" content="Бережное лечение, понятный план и забота без лишней тревоги.">
+  <meta property="og:image" content="{{ORIGIN}}/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{{ORIGIN}}/og.png">
+  <title>Aurelia — стоматология, в которую возвращаются</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="site-header" id="top">
+    <a class="brand" href="#top" aria-label="Aurelia, на главную">
+      <span class="brand-mark">A</span><span><b>AURELIA</b><small>бережная стоматология</small></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Основная навигация">
+      <a href="#services">Услуги</a><a href="#approach">Подход</a><a href="#doctors">Врачи</a><a href="#reviews">Отзывы</a>
+    </nav>
+    <div class="header-actions">
+      <a class="phone" href="tel:+73432872202">+7 (343) 287-22-02</a>
+      <button class="outline-btn js-open-form">Записаться</button>
+      <button class="menu-btn" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" aria-hidden="true">
+    <a href="#services">Услуги</a><a href="#approach">Подход</a><a href="#doctors">Врачи</a><a href="#reviews">Отзывы</a>
+    <a class="mobile-phone" href="tel:+73432872202">+7 (343) 287-22-02</a>
+  </div>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy reveal">
+        <div class="eyebrow"><span></span> Екатеринбург · работаем ежедневно</div>
+        <h1>Улыбка, к которой<br><em>хочется возвращаться</em></h1>
+        <p class="hero-lead">Лечим бережно, объясняем честно и показываем результат заранее. Без навязанных услуг и тревоги.</p>
+        <div class="hero-cta">
+          <button class="primary-btn js-open-form">Получить план лечения <span>↗</span></button>
+          <button class="text-btn js-open-chat"><i>✦</i> Спросить помощника</button>
+        </div>
+        <div class="hero-trust">
+          <div class="avatars" aria-hidden="true"><span>ЕА</span><span>МС</span><span>АК</span></div>
+          <div><strong>4,9 <span>★★★★★</span></strong><small>по отзывам 1 280 пациентов</small></div>
+        </div>
+      </div>
+      <div class="hero-visual reveal delay-1" aria-label="Современная клиника Aurelia">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="visual-card">
+          <div class="visual-top"><span>01</span><span>Диагностика</span></div>
+          <div class="smile-art"><div class="tooth">A</div></div>
+          <div class="visual-bottom"><b>Видим больше.<br>Лечим точнее.</b><span>3D-снимок<br>за 30 секунд</span></div>
+        </div>
+        <div class="floating-badge badge-one"><span>✓</span> Гарантия<br><b>до 5 лет</b></div>
+        <div class="floating-badge badge-two"><span>24/7</span> забота после лечения</div>
+      </div>
+      <div class="hero-strip reveal delay-2">
+        <span>Лечение без боли</span><i></i><span>Собственная диагностика</span><i></i><span>Рассрочка 0%</span><i></i><span>Гарантия результата</span>
+      </div>
+    </section>
+
+    <section class="section services" id="services">
+      <div class="section-head reveal"><div><span class="section-index">01 / УСЛУГИ</span><h2>Всё для здоровой<br><em>и красивой улыбки</em></h2></div><p>От первого осмотра до полного восстановления — в одной клинике и по понятному плану.</p></div>
+      <div class="service-grid">
+        <article class="service-card featured reveal"><span class="card-num">01</span><div class="service-icon">✦</div><h3>Диагностика</h3><p>Осмотр, 3D-снимок и цифровой план лечения за один визит.</p><div class="price">от 1 900 ₽</div><button class="card-link js-open-form" data-service="Диагностика">Подробнее <span>→</span></button></article>
+        <article class="service-card reveal delay-1"><span class="card-num">02</span><div class="service-icon">◌</div><h3>Лечение зубов</h3><p>Под микроскопом, с анестезией нового поколения и фотопротоколом.</p><div class="price">от 6 500 ₽</div><button class="card-link js-open-form" data-service="Лечение зубов">Подробнее <span>→</span></button></article>
+        <article class="service-card reveal delay-2"><span class="card-num">03</span><div class="service-icon">◇</div><h3>Имплантация</h3><p>Надёжное восстановление зубов с пожизненной гарантией на имплант.</p><div class="price">от 39 000 ₽</div><button class="card-link js-open-form" data-service="Имплантация">Подробнее <span>→</span></button></article>
+        <article class="service-card reveal"><span class="card-num">04</span><div class="service-icon">☼</div><h3>Эстетика</h3><p>Виниры, отбеливание и реставрации с естественным результатом.</p><div class="price">от 18 000 ₽</div><button class="card-link js-open-form" data-service="Эстетическая стоматология">Подробнее <span>→</span></button></article>
+      </div>
+    </section>
+
+    <section class="approach" id="approach">
+      <div class="approach-copy reveal"><span class="section-index light">02 / НАШ ПОДХОД</span><h2>Спокойно.<br>Понятно. <em>По-честному.</em></h2><p>Мы знаем, что поход к стоматологу может вызывать тревогу. Поэтому сначала слушаем, потом объясняем и только после вашего согласия начинаем лечение.</p><button class="cream-btn js-open-form">Познакомиться на консультации <span>→</span></button></div>
+      <div class="steps">
+        <div class="step reveal"><span>01</span><div><h3>Сначала — знакомство</h3><p>Без спешки обсуждаем, что беспокоит, и проводим аккуратный осмотр.</p></div></div>
+        <div class="step reveal"><span>02</span><div><h3>Показываем всё на экране</h3><p>Вы видите состояние зубов и понимаете каждый пункт плана.</p></div></div>
+        <div class="step reveal"><span>03</span><div><h3>Фиксируем цену заранее</h3><p>Стоимость не меняется в процессе. Доступна рассрочка без переплат.</p></div></div>
+      </div>
+    </section>
+
+    <section class="section doctors" id="doctors">
+      <div class="section-head reveal"><div><span class="section-index">03 / КОМАНДА</span><h2>Врачи, которым<br><em>доверяют улыбку</em></h2></div><p>Каждый врач работает в своей специализации и регулярно подтверждает квалификацию.</p></div>
+      <div class="doctor-grid">
+        <article class="doctor-card reveal"><div class="doctor-photo photo-one"><span>ЕА</span><div class="experience">12 лет<br><small>опыта</small></div></div><div class="doctor-info"><h3>Елена Андреева</h3><p>Главный врач · стоматолог-терапевт</p><div><button class="card-link js-open-form" data-service="Консультация Елены Андреевой">Записаться <span>→</span></button><span class="rating">★ 5.0</span></div></div></article>
+        <article class="doctor-card reveal delay-1"><div class="doctor-photo photo-two"><span>МС</span><div class="experience">9 лет<br><small>опыта</small></div></div><div class="doctor-info"><h3>Михаил Соколов</h3><p>Стоматолог-хирург · имплантолог</p><div><button class="card-link js-open-form" data-service="Консультация Михаила Соколова">Записаться <span>→</span></button><span class="rating">★ 4.9</span></div></div></article>
+        <article class="doctor-card reveal delay-2"><div class="doctor-photo photo-three"><span>АК</span><div class="experience">8 лет<br><small>опыта</small></div></div><div class="doctor-info"><h3>Анна Ким</h3><p>Стоматолог-ортопед · эстетист</p><div><button class="card-link js-open-form" data-service="Консультация Анны Ким">Записаться <span>→</span></button><span class="rating">★ 5.0</span></div></div></article>
+      </div>
+    </section>
+
+    <section class="proof section" id="reviews">
+      <div class="proof-top reveal"><span class="section-index">04 / РЕЗУЛЬТАТЫ</span><div class="metric"><b>12 400+</b><span>здоровых улыбок</span></div><div class="metric"><b>96%</b><span>приходят по рекомендации</span></div><div class="metric"><b>15 лет</b><span>заботимся о пациентах</span></div></div>
+      <div class="review reveal"><div class="quote-mark">“</div><blockquote>Впервые я вышла от стоматолога не уставшей и испуганной, а спокойной. Всё показали на экране, объяснили варианты и никуда не торопили. Теперь лечимся здесь всей семьёй.</blockquote><div class="review-author"><span>ОВ</span><div><b>Ольга В.</b><small>Пациент Aurelia с 2022 года</small></div><strong>★★★★★</strong></div></div>
+    </section>
+
+    <section class="final-cta">
+      <div class="cta-orbit"></div><div class="reveal"><span class="section-index light">ПЕРВЫЙ ШАГ</span><h2>Начните с консультации.<br><em>Остальное мы объясним.</em></h2><p>Оставьте номер — администратор перезвонит в течение 10 минут, ответит на вопросы и подберёт удобное время.</p><button class="cream-btn js-open-form">Записаться на консультацию <span>↗</span></button></div>
+    </section>
+  </main>
+
+  <footer><a class="brand footer-brand" href="#top"><span class="brand-mark">A</span><span><b>AURELIA</b><small>бережная стоматология</small></span></a><div><b>Екатеринбург</b><span>ул. Николая Никонова, 8</span><span>Ежедневно 08:00–21:00</span></div><div><a href="tel:+73432872202">+7 (343) 287-22-02</a><a href="mailto:hello@aurelia-dental.ru">hello@aurelia-dental.ru</a></div><small>© 2026 Aurelia Dental · Демонстрационный портфолио-проект</small></footer>
+
+  <button class="chat-fab js-open-chat" aria-label="Открыть помощника"><span>✦</span><i></i><b>Есть вопрос?</b></button>
+  <div class="chat-panel" aria-hidden="true" role="dialog" aria-label="Помощник Aurelia">
+    <div class="chat-head"><div><span class="bot-avatar">✦</span><div><b>Аура</b><small><i></i> отвечает сразу</small></div></div><button class="chat-close" aria-label="Закрыть">×</button></div>
+    <div class="chat-messages" aria-live="polite"></div>
+    <div class="quick-replies"></div>
+    <form class="chat-input"><input aria-label="Ваш вопрос" placeholder="Напишите вопрос…" autocomplete="off"><button aria-label="Отправить">↑</button></form>
+    <div class="chat-note">Помощник не ставит диагноз и не заменяет врача</div>
+  </div>
+
+  <div class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="form-title">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card">
+      <button class="modal-close" aria-label="Закрыть">×</button>
+      <span class="section-index">ЗАПИСЬ В AURELIA</span><h2 id="form-title">Давайте подберём<br><em>удобное время</em></h2><p>Оставьте контакты. Администратор перезвонит и ответит на вопросы.</p>
+      <form id="lead-form">
+        <label>Как к вам обращаться?<input name="name" required minlength="2" placeholder="Ваше имя" autocomplete="name"></label>
+        <label>Номер телефона<input name="phone" required inputmode="tel" placeholder="+7 (___) ___-__-__" autocomplete="tel"></label>
+        <label>Что вас интересует?<select name="service"><option>Первичная консультация</option><option>Диагностика</option><option>Лечение зубов</option><option>Имплантация</option><option>Эстетическая стоматология</option><option>Пока не знаю</option></select></label>
+        <label class="consent"><input type="checkbox" name="consent" required><span>Согласен на обработку персональных данных</span></label>
+        <button class="primary-btn submit-btn" type="submit">Записаться <span>↗</span></button>
+        <div class="form-status" role="status"></div>
+      </form>
+    </div>
+  </div>
+  <script src="/app.js" defer></script>
+</body>
+</html>
